@@ -3,8 +3,20 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 from flask import Flask, request, jsonify
 
+# Cargar el modelo
 model = tf.keras.models.load_model('cnn_custom.h5')
 
+# Clases de ejemplo
+class_labels = {
+    0: 'camiseta_amarilla',
+    1: 'camiseta_azul',
+    2: 'camiseta_blanca',
+    3: 'camiseta_roja',
+    4: 'vestido_rojo',
+    5: 'vestido_azul',
+    6: 'vestido_amarillo',
+    7: 'vestido_blanco'
+}
 
 def preprocess_for_prediction(img_data):
     img = image.load_img(img_data, target_size=(128, 128))
