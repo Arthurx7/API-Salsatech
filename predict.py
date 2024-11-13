@@ -2,19 +2,8 @@ import tensorflow as tf
 import numpy as np
 from tensorflow.keras.preprocessing import image
 from flask import Flask, request, jsonify
-import gdown
-import os
 
-# Descargar el modelo desde Google Drive
-def download_model():
-    url = "https://drive.google.com/file/d/1u-wYYXEme2mqzh9mza5FGvWFWYWZTAJK/view?usp=sharing"  # Reemplaza con el ID de tu archivo de Google Drive
-    output = '/tmp/cnn_custom.h5'
-    gdown.download(url, output, quiet=False)
-    return output
-
-# Cargar el modelo
-model_path = download_model()  # Descarga el modelo en tiempo de ejecución
-model = tf.keras.models.load_model(model_path)
+model = tf.keras.models.load_model('cnn_custom.h5')
 
 
 def preprocess_for_prediction(img_data):
